@@ -1,0 +1,708 @@
+{
+    "title": "",
+    "metadata": {
+        "author": "Lukas Semecky",
+        "creation_date": "2024-04-23 10:02:00",
+        "version": ""
+    },
+    "sections": [
+        {
+            "section_title": "1 BTP Deployment Guide",
+            "content": []
+        },
+        {
+            "section_title": "BTP accesses",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Each customer following these instructions will be allowed access to their instances which are required to deploy all our applications. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "All the following steps must be taken for a correct and functional deployment. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "If the customer does not have sufficient knowledge of working in the BTP Cockpit, it is possible to request a consultation with a developer with whom this configuration will be carried out. "
+                }
+            ]
+        },
+        {
+            "section_title": "Global Account",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Admin rights are granted if the customer is interested in the management of his Global and Subaccount by the developers."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "ADMIN       "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "only if the customer needs and wants to create and edit a sub account and the entire space."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "This is how your left bar will look when you have admin rights to global account. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "VIEWER"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "It is enough if the customer can prepare the environment himself, so this permission is enough for us to get to the subaccount."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "This is how your left bar will look like when you have viewer rights to global account. "
+                }
+            ]
+        },
+        {
+            "section_title": "Subaccount(multi-Environment)",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Here we will be interested in two main factors to set the right approaches."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Permissions are granted for the given Subaccount on which the application will be deployed (TEST/PROD)"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Security"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Cloud Foundry"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "SECURITY"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "When the Users tab opens, there is a Create button in the upper right corner, click on it and fill in the form where you enter the email of the developer you want to add."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "in most cases the default identity provider is assigned, unless otherwise specified."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "the Role Collections must also be assigned."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "After creating the user, click on the row that was created with the new user."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Expand the overview of the user on the right side of the screen, click on the three dots in the Role Collections section to assign Role Collections"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "When you click on the Role Collections assignment you will see a form like this where you will be given the choice to check every role that will be available"
+                }
+            ]
+        },
+        {
+            "section_title": "",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Cloud Foundry"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "In Cloud Foundry, click on the Org Members button."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Once the Org Members tab opens, the procedure is very similar to Security, there is an Add Members button in the top right corner, click on it and fill in the developer's email and you have the option to fill in the rights for the developer."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "In the E-mails field fill in the email of the developer you want to add"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "In Assign Org Roles we assign in most cases all the roles offered by"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Once the developers and all the Roles and Role Collections are assigned, we can click on the space where the applications will be deployed."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Click on the Add Members button."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "You will see a form that you fill out very similarly to all the previous ones."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Enter the developer's email."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "assign roles according to the screenshot, in most cases all."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "These permissions are set for the specific space to which the application will be deployed."
+                }
+            ]
+        },
+        {
+            "section_title": "Success Factors",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "It is necessary to enable accesses to SF for TEST/PROD, where in each instance we create API key, Certification, Private Key, copy Company key via Manage OAuth Data"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Via Manage Homepage we add a tile for the application to the main page in SF."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Access to SF either as Admin or for instances only - Manage OAuth Data and Manage Homepage"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The creation of objects for the application and import is handled by the Consultants."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "More information with print screen are here Guides."
+                }
+            ]
+        },
+        {
+            "section_title": "Setup SF preparation of MDF object",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "If we are deploying for the first time, we need to set up MDF objects (with or without TMA, spa proxy, work schedule and customizations and prepare some objects. Everything is configured in SF on the customer side."
+                }
+            ]
+        },
+        {
+            "section_title": "Configure Object Definitions",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "In SF go to configure Object Definitions in the first dropdown select Object definitions and in the second dropdown select Work Schedule Day Model."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "When we are on the ready tab, we click on “Take action” and then on Make correction to edit or create new objects."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "If we don't find them, we have to prepare these 7 objects exactly as specified these are: cust_color, cust_archived, cust_costum, crossMidnightAllowed, nonWorkingDay,cust_Spadefault, cust_Sparegion."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "!!exactly according to the attached screenshot!!!"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Another object that needs to be modified is External Time Data. Where again we click on Make Correction in the “Take action” Button and edit the objects"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Then find the object “endTime” in the list and click on detail."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The object datasheet will open where we find the Visibility field and that field must be set to Editable then the Status field which must be Active and when we edit it, we click done."
+                }
+            ]
+        },
+        {
+            "section_title": "Import and Export Data",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Here you need to export MDF data from the system where these objects are already prepared. For export we can use 2SDemo Sf."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "!!!If the customer where we deploy SPA, have TMA (which are not created on 2SDEMO => Telecome have a completed TMA mdf object) we can ask someone from the consultancy who has access to the customer SF that has TMA to export and send us the data that we will then import!!!"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Then we go to the Select Object field where we type SPA and we will see all MDF objects for SPA."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "After clicking them we add them to our selection, we must select all the objects we need SPA-Favourite People is not used anymore and it is replaced by cust_Spagroup."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "After selecting all the objects that are needed, click on export and the selected data will be exported. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Then go to the Scheduled Job manager where you find your exported object go to the action column where you click on View Details and then download the file where the exported objects."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "If we have downloaded all the objects, go to Import and Export data again (But this time to customer SF) in the Select field, select Import, click on ZIP file, select the file we exported and click on Import."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "If we want to see if the data is uploaded well, we can click on Validate where we can look at the folder to see if it is empty or we can go to Export data and as we selected SPA objects in the previous step to make sure that they can be exported and that select will offer them to us."
+                }
+            ]
+        },
+        {
+            "section_title": "Manage Data",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "First, we go to Manage Data if we have imported the MDF objects correctly we should find SPA Customization in the Create New field."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Each customer has one specific customizing which has an external code SpaCostumizing and an external name SpaCostumizing and then everything necessary is filled in according to the customer's specifications in the workbook."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The next step is to create a Work Schedule: NORM"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "this norm is used only once, and we can create it according to the already created norm in 2S. Go to the Create new field and find Work Schedule and create it. External Name => NORM and then add everything according to the prepared template."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "!! It is needed to create Work Schedule in SPA and without this standard the application would not work.!!!"
+                }
+            ]
+        },
+        {
+            "section_title": "Manage Configuration UI",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Go to Configure UI click on Create New in Id type “SPAproxy” and in the selector if we have correctly imported MDF objects select SPA Proxy."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "You only need to create this object to be stored in SF and save the other things such as naming the object and the name is then taken care of by the consultant, who modifies it according to the customer's specifications. "
+                }
+            ]
+        },
+        {
+            "section_title": "Configure People Profile",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "If the customer has it, this is where the MDFs already created in Manage UI are pulled into certain sections of the user's profile. If he has permissions to do so he will see everything that is set. Consultant configuration"
+                }
+            ]
+        },
+        {
+            "section_title": "",
+            "content": []
+        },
+        {
+            "section_title": "",
+            "content": []
+        },
+        {
+            "section_title": "",
+            "content": []
+        },
+        {
+            "section_title": "Preparing the App for Deployment",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "The shift planning application has only two independent parts."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Shiftplanning"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Shiftplanning-display"
+                }
+            ]
+        },
+        {
+            "section_title": "Shiftplanning",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "In this part we must prepare the application for deployment. We need to go to the app folder using the cd app command and then run npm run build (we don't need to run npm install first because there is already a command in package.json that when we enter npm run build it will run the node module installation first and then the build itself)."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The dist folder we need is automatically created in the app folder so we don't have to copy or move anything, after npm run build we have the application ready for the next steps."
+                }
+            ]
+        },
+        {
+            "section_title": "Shiftplanning-Display",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Here we can continue in the same way as in the previous case."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "In this part we must prepare the application for deployment. We need to go to the app folder using the cd app command and then run npm run build (we don't need to run npm install first because there is already a command in package.json that when we enter npm run build it will run the node module installation first and then the build itself)."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The dist folder we need is automatically created in the app folder, so we don't have to copy or move anything, after npm run build, we have the application ready for the next steps."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "If there is any problem in installing Node-modules. You can delete npm install from package.json and install it as needed. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "For example, for mac with sudo npm install."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "For windows, the best option is to delete package-lock.json and run npm ci which should install all necessary node modules and their versions exactly as they are. The versions should be the same never newer otherwise the application just won't run."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "!!!The problem in versions and module installation is sometimes a problem but it can be worked around!!!"
+                }
+            ]
+        },
+        {
+            "section_title": "Logging in and setting CF.",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "To access CF we first need to find out the API to which the respective subaccount is connected, we can find this out from the BTP. The address is needed to connect to the space."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The Api address is the same in most cases, but it is good to make sure you cannot connect to the subaccount without the correct Api address."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "To log in to CF you need an E-mail and password to BTP."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "After connecting to the cloud foundry, you use the cf login command and then enter your email and password or cf login --sso where you click on the subcommand, and it generates a login code that you enter the terminal."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "If you need to log into another Endpoint Api, just type cf api and copy the appropriate Endpoint."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "You will only see the accounts that are assigned to a given endpoint, you will never see a list of all of them unless you are on their endpoint Api."
+                }
+            ]
+        },
+        {
+            "section_title": "Preparing for deployment(deploy.yaml)",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "The yaml file controls the deployment of the application, adding details such as how many instances to create, how much memory the application will need and other necessary variables to make the application work."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "For multi-customer deployments it is a good idea to create your own yaml file to add variables to, this will allow you to not overwrite the root file each time a new deployment is made."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "When these variables are added, the information is automatically overwritten in the main file."
+                },
+                {
+                    "type": "paragraph",
+                    "text": " !! The names in the created file must match those in brackets ((API_URL)) it is case sensitive!!"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "In the application in the config.js file you can make sure that you have all the necessary env. that need to be inserted or created if you miss one in the yaml file."
+                }
+            ]
+        },
+        {
+            "section_title": "SF_URL",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "What is the SF_URL I need can be found from the SF address of the customer, after logging into SF we investigate the URL address and from there we find out what sf URL the customer uses."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "It is always https:// <<datacentrum>>.eu Everything beyond this address is no longer relevant for us. "
+                }
+            ]
+        },
+        {
+            "section_title": "API_URL",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "This address comes directly from the SF_URl on this page to find the corresponding SF_URL in the third column. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "When we find the appropriate address, we focus on the first column DATA CENTER where is the code designation of the address. This is necessary to find the API_URL on this page, we find the row that corresponds to our code name, and this is our API_URL."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "PREVIEW is for the test instance. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Production is for production."
+                }
+            ]
+        },
+        {
+            "section_title": "ROUTE",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "This route is created according to the rule:"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "<<application name>> - <<subdomain>>.cfapps. <<api endpoint>>"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "the name of the application is found in package.json or directly in manifest.yaml followed by a dash subdomain which is on the BTP of the respective subaccount followed by .cfapps and the noon part of the Api endpoint as seen in the pictures"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "this way we create the application address which is created both in routes and in APP_URL"
+                }
+            ]
+        },
+        {
+            "section_title": "COMPANY_ID",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Company ID in some cases can be found directly in BTP from the subaccount, but in most cases, you can find it either from the client itself or directly in SF when you have access."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "After logging into the SF client, enter Manage Oauth2 Client Application in the search box."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Here you will see a table of applications logged in, just click on any of the view buttons."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "And after clicking you will see a table where the first column shows the CompanyID we need"
+                }
+            ]
+        },
+        {
+            "section_title": "\nCLIENT_KEY",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "The client key is retrieved from the same place as the Company_ID again by entering it in the search box in SF Manage OAuth2 Client Application which redirects you to the next page."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Here are 2 points: "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "1. we can find an already registered application by name (usually when creating it you enter the same name as the application itself, for better searching) and when we click on view, we will see in the middle of the page Api Key = CLIENT KEY"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "2. If the application is not yet registered here, we must first create it, click on REGISTER CLIENT APPLICATION"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Here we enter the name of the application, we can look in the manifest.yaml and copy the name."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Then enter the URL it is our created route that we did in the previous step supplemented with https:// and Certificate, usually we use the same for all applications. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "We have the certificate stored because the certificate includes the private key which is paired and without these two important things the application will not work."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "When we fill everything in, we click on Register."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "When we open the created and registered application via the view button, we will see a new window with our CLIENT_KEY = API_KEY in the middle."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "For each part of the application, we must create a new CLIENT_KEY the only thing that remains is always Certificates, we use the same."
+                }
+            ]
+        },
+        {
+            "section_title": "CERTIFICATION AND PRIVATE KEY ",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "These keys are necessary for the functioning of the reposted application, they must always be the same and both must be paired together, the certificate does not work without the private key and vice versa. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "If we don't have either key the key is registered as an application in Manage OAuth2 Client application in SF where we first create the keys when we create them. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Both keys can be downloaded, after creating the Certificate you must download the private key as well because it is the only way to get it then you will never get it again and you would be forced to make a new certificate.  "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The keys are added directly to the code, in APP/SRC/VARSSL, and this opens certs/cert.pem for the certification and private/private.key for the private key. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "We always need to be careful that both keys are copied correctly otherwise the application will give us an error. It is always a good idea to check the first and last few characters of both codes."
+                }
+            ]
+        },
+        {
+            "section_title": "Deploying the application",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "When we have everything set up and all the manifest variables ready and the keys copied in the code, we can deploy the application. "
+                },
+                {
+                    "type": "paragraph",
+                    "text": "we connect to the CF of the respective customer for deployment."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "After logging in to the customer and his space, enter the command."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "cf push --vars-file <<filename>> cflinuxfs4"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Then the application starts deploying to the given BTP"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "In this way we deploy both parts of the application, shiftplanning and shiftplanning-display."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "In BTP we can still check all variables if they match what we have in the manifest to make sure that everything is correctly assigned, if something is missing or not correctly assigned, we can edit the variables directly in BTP without having to re-deploy the application, just edit, or add the desired value and restart the application. The only exceptions are Certification and Private Key if there is an error in them the application must be redeployed."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "When we have everything set up and checked, and all deployments have taken place, the green start button is lit for all applications. We can test their functionality. When we start all 3 Frontend applications, and the screen shows this:"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "This means that the application is ready, and we are halfway done by this stage. The application is successfully deployed, but until the Provisioning addresses are created, we don't know if it is fully functional."
+                }
+            ]
+        },
+        {
+            "section_title": "Address Configuration(provisioning)",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "This step is necessary for the functioning of the application, the created addresses must be sent to the appropriate consultant who oversees the application to the customer."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Addresses are always created 3 and from each frontend. So, for DG we will send 9 https addresses which the consultant will enter SF."
+                }
+            ]
+        },
+        {
+            "section_title": "creating an address",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "1- address is for login."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "https:// <<ROUTE>>/api/login/<<APP_NAME>>"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "2- address is for logout."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "https:// <<ROUTE>>/api/logout/<<APP_NAME>>"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "3 - only adress"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "https:// <<ROUTE>>"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "For this application it is necessary to create 6 addresses for each part of application 3. for both shiftplanning and shiftplanningdisplay"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "So, for example, the first address might look like this."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "https://shiftplanningdisplay-test-enviroment-791wnp4b.cfapps.eu10-004.hana.ondemand.com/api/login/shiftplanningdisplay"
+                }
+            ]
+        },
+        {
+            "section_title": "Configurations and tests",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "After deploying and saving the address to provisioning, the application should start fine like here:"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "If the application does not start and either the screen remains white or nothing is displayed, we must look for possible errors. We can look in the BTP logs which may tell us the possible error."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Check all the variables to see if they are entered correctly and there is no error, or if the corresponding Certificates or Private Keys match."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "We can try to run the application on the guest locale unless there is a bug in the application itself or a bug in its build, we will test all functionality. If the application is running, there may be an error somewhere in the deployment or in one of the possible versions."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Or all MDF objects or Picklists that are needed for the application to work properly are not specified yet."
+                }
+            ]
+        }
+    ]
+}
