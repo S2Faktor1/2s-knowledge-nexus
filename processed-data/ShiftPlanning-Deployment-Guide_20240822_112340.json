@@ -200,8 +200,16 @@
                     "text": "In SF go to configure Object Definitions in the first dropdown select Object definitions and in the second dropdown select Work Schedule Day Model."
                 },
                 {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_148.png"
+                },
+                {
                     "type": "paragraph",
                     "text": "When we are on the ready tab, we click on “Take action” and then on Make correction to edit or create new objects."
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_150.png"
                 },
                 {
                     "type": "paragraph",
@@ -214,6 +222,10 @@
                 {
                     "type": "paragraph",
                     "text": "Another object that needs to be modified is External Time Data. Where again we click on Make Correction in the “Take action” Button and edit the objects"
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_157.png"
                 },
                 {
                     "type": "paragraph",
@@ -237,12 +249,20 @@
                     "text": "!!!If the customer where we deploy SPA, have TMA (which are not created on 2SDEMO => Telecome have a completed TMA mdf object) we can ask someone from the consultancy who has access to the customer SF that has TMA to export and send us the data that we will then import!!!"
                 },
                 {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_172.png"
+                },
+                {
                     "type": "paragraph",
                     "text": "Then we go to the Select Object field where we type SPA and we will see all MDF objects for SPA."
                 },
                 {
                     "type": "paragraph",
                     "text": "After clicking them we add them to our selection, we must select all the objects we need SPA-Favourite People is not used anymore and it is replaced by cust_Spagroup."
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_175.png"
                 },
                 {
                     "type": "paragraph",
@@ -280,6 +300,10 @@
                 {
                     "type": "paragraph",
                     "text": "this norm is used only once, and we can create it according to the already created norm in 2S. Go to the Create new field and find Work Schedule and create it. External Name => NORM and then add everything according to the prepared template."
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_216.png"
                 },
                 {
                     "type": "paragraph",
@@ -392,6 +416,10 @@
                     "text": "To access CF we first need to find out the API to which the respective subaccount is connected, we can find this out from the BTP. The address is needed to connect to the space."
                 },
                 {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_290.png"
+                },
+                {
                     "type": "paragraph",
                     "text": "The Api address is the same in most cases, but it is good to make sure you cannot connect to the subaccount without the correct Api address."
                 },
@@ -402,6 +430,10 @@
                 {
                     "type": "paragraph",
                     "text": "After connecting to the cloud foundry, you use the cf login command and then enter your email and password or cf login --sso where you click on the subcommand, and it generates a login code that you enter the terminal."
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_296.png"
                 },
                 {
                     "type": "paragraph",
@@ -433,6 +465,10 @@
                     "text": " !! The names in the created file must match those in brackets ((API_URL)) it is case sensitive!!"
                 },
                 {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_318.png"
+                },
+                {
                     "type": "paragraph",
                     "text": "In the application in the config.js file you can make sure that you have all the necessary env. that need to be inserted or created if you miss one in the yaml file."
                 }
@@ -457,6 +493,10 @@
                 {
                     "type": "paragraph",
                     "text": "This address comes directly from the SF_URl on this page to find the corresponding SF_URL in the third column. "
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_335.png"
                 },
                 {
                     "type": "paragraph",
@@ -486,6 +526,10 @@
                 {
                     "type": "paragraph",
                     "text": "the name of the application is found in package.json or directly in manifest.yaml followed by a dash subdomain which is on the BTP of the respective subaccount followed by .cfapps and the noon part of the Api endpoint as seen in the pictures"
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_351.png"
                 },
                 {
                     "type": "paragraph",
@@ -532,6 +576,10 @@
                 {
                     "type": "paragraph",
                     "text": "2. If the application is not yet registered here, we must first create it, click on REGISTER CLIENT APPLICATION"
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_391.png"
                 },
                 {
                     "type": "paragraph",
@@ -612,6 +660,10 @@
                     "text": "In this way we deploy both parts of the application, shiftplanning and shiftplanning-display."
                 },
                 {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_451.png"
+                },
+                {
                     "type": "paragraph",
                     "text": "In BTP we can still check all variables if they match what we have in the manifest to make sure that everything is correctly assigned, if something is missing or not correctly assigned, we can edit the variables directly in BTP without having to re-deploy the application, just edit, or add the desired value and restart the application. The only exceptions are Certification and Private Key if there is an error in them the application must be redeployed."
                 },
@@ -642,6 +694,10 @@
             "section_title": "creating an address",
             "content": [
                 {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_480.png"
+                },
+                {
                     "type": "paragraph",
                     "text": "1- address is for login."
                 },
@@ -666,6 +722,10 @@
                     "text": "https:// <<ROUTE>>"
                 },
                 {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_492.png"
+                },
+                {
                     "type": "paragraph",
                     "text": "For this application it is necessary to create 6 addresses for each part of application 3. for both shiftplanning and shiftplanningdisplay"
                 },
@@ -687,8 +747,16 @@
                     "text": "After deploying and saving the address to provisioning, the application should start fine like here:"
                 },
                 {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_502.png"
+                },
+                {
                     "type": "paragraph",
                     "text": "If the application does not start and either the screen remains white or nothing is displayed, we must look for possible errors. We can look in the BTP logs which may tell us the possible error."
+                },
+                {
+                    "type": "image",
+                    "image_path": "processed-data/images\\ShiftPlanning-Deployment-Guide_image_505.png"
                 },
                 {
                     "type": "paragraph",

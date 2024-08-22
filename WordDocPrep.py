@@ -2,7 +2,17 @@ import os
 import sys
 import json
 from docx import Document
+from docx.shared import Inches
 from datetime import datetime
+
+def save_image(image, file_name):
+    """Saves an image to the processed-data/images directory."""
+    images_dir = 'processed-data/images'
+    os.makedirs(images_dir, exist_ok=True)
+    image_path = os.path.join(images_dir, file_name)
+    with open(image_path, "wb") as img_file:
+        img_file.write(image)
+    return image_path
 
 def process_document(file_path):
     doc = Document(file_path)
@@ -24,7 +34,7 @@ def process_document(file_path):
     data["metadata"]["version"] = core_props.version
 
     section = None
-    for para in doc.paragraphs:
+    for i, para in enumerate(doc.paragraphs):
         if para.style.name.startswith('Heading'):
             # Determine header level
             level = int(para.style.name.replace('Heading ', ''))
@@ -47,6 +57,17 @@ def process_document(file_path):
                 else:
                     content_type = "paragraph"
                     section["content"].append({"type": content_type, "text": para.text})
+        
+        # Handling images within the document
+        for rel in para._element.xpath('.//a:blip'):
+            image = rel.get('{http://schemas.openxmlformats.org/officeDocument/2006/relationships}embed')
+            image_part = doc.part.related_parts[image]
+            image_data = image_part.blob
+            image_name = f"{os.path.splitext(os.path.basename(file_path))[0]}_image_{i}.png"
+            image_path = save_image(image_data, image_name)
+            
+            if section:
+                section["content"].append({"type": "image", "image_path": image_path})
     
     return data
 
