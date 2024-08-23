@@ -4,6 +4,10 @@ import numpy as np
 from dotenv import load_dotenv
 import sys
 import os
+from PIL import Image
+import base64
+import requests
+from io import BytesIO
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -11,15 +15,42 @@ load_dotenv()
 # Get the OpenAI API key from the environment variable
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-# Directory to save vector data
-VECTOR_DATA_DIR = "vector-data"
-
-# Ensure the directory exists
-os.makedirs(VECTOR_DATA_DIR, exist_ok=True)
-
 def load_processed_data(json_file):
     with open(json_file, 'r', encoding='utf-8') as f:
         return json.load(f)
+
+def create_image_vector(image_path):
+    # Load image from file path
+    image = Image.open(image_path)
+
+    # Convert image to bytes
+    buffered = BytesIO()
+    image.save(buffered, format="PNG")
+    image_bytes = buffered.getvalue()
+
+    # Encode bytes to base64
+    image_base64 = base64.b64encode(image_bytes).decode('utf-8')
+
+    # Use an image embedding model (e.g., OpenAI's CLIP or similar model)
+    response = openai.Image.create(input=image_base64, model="image-embedding-model")
+    vector = response['data'][0]['embedding']
+
+    return vector
+
+def process_images(data):
+    image_vectors = []
+    for section in data['sections']:
+        for content in section['content']:
+            if content['type'] == 'image':
+                image_path = content['image_path']  # Corrected key
+                vector = create_image_vector(image_path)
+                image_vectors.append({
+                    'section_title': section['section_title'],
+                    'image_path': image_path,
+                    'vector': vector
+                })
+    return image_vectors
+
 
 def create_vectors(data):
     text_vectors = []
@@ -37,7 +68,10 @@ def create_vectors(data):
             'vector': vector
         })
     
-    return text_vectors
+    # Process images separately
+    image_vectors = process_images(data)
+    
+    return text_vectors, image_vectors
 
 def save_vectors(vectors, output_file):
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -45,14 +79,17 @@ def save_vectors(vectors, output_file):
 
 def process_file(json_file):
     data = load_processed_data(json_file)
-    text_vectors = create_vectors(data)
+    text_vectors, image_vectors = create_vectors(data)
     
-    # Construct the output file path
-    text_output_file = os.path.join(VECTOR_DATA_DIR, f'text_vectors_{os.path.basename(json_file)}')
+    # Save text and image vectors to separate files
+    text_output_file = f'text_vectors_{os.path.basename(json_file)}'
+    image_output_file = f'image_vectors_{os.path.basename(json_file)}'
     
     save_vectors(text_vectors, text_output_file)
+    save_vectors(image_vectors, image_output_file)
     
     print(f"Text vectors saved to {text_output_file}")
+    print(f"Image vectors saved to {image_output_file}")
 
 def process_directory(directory_path):
     json_files = [f for f in os.listdir(directory_path) if f.endswith('.json')]
