@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2S-B.o.B</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar" id="chat-list"></div>
+        <div class="chat-container">
+            <div class="chat-box" id="chat-box"></div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Please enter your question...">
+                <button onclick="sendMessage()">Send</button>
+                <button onclick="startNewChat()">New Chat</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let chats = JSON.parse(localStorage.getItem('chats')) || {};
+        let currentChat = localStorage.getItem('currentChat') || '';
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const userMessage = userInput.value;
+            if (userMessage.trim() === '') return;
+
+            if (!currentChat) {
+                const title = userMessage.split(' ').slice(0, 3).join(' '); // Using first 3 words as title
+                currentChat = title;
+                chats[currentChat] = [];
+                localStorage.setItem('currentChat', currentChat);
+            }
+            chats[currentChat].push({ user: userMessage, ai: 'Přemýšlí...' });
+            localStorage.setItem('chats', JSON.stringify(chats));
+            updateChatBox();
+            userInput.value = '';
+
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: userMessage })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        chats[currentChat].pop();
+                        chats[currentChat].push({ user: userMessage, ai: data.message });
+                    } else if (data.error) {
+                        chats[currentChat].pop();
+                        chats[currentChat].push({ user: userMessage, ai: 'An error occurred while retrieving the answer: ' + data.error });
+                    }
+                    localStorage.setItem('chats', JSON.stringify(chats));
+                    updateChatBox();
+                    updateChatList();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    chats[currentChat].pop();
+                    chats[currentChat].push({ user: userMessage, ai: 'An error occurred while retrieving the answer.' });
+                    localStorage.setItem('chats', JSON.stringify(chats));
+                    updateChatBox();
+                    updateChatList();
+                });
+        }
+
+        function updateChatBox() {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = '';
+            if (currentChat && chats[currentChat]) {
+                chats[currentChat].forEach(chat => {
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'user-message';
+                    userMessage.textContent = 'Vy: ' + chat.user;
+                    const aiMessage = document.createElement('div');
+                    aiMessage.className = 'ai-message';
+                    aiMessage.textContent = 'AI: ' + chat.ai;
+                    chatBox.appendChild(userMessage);
+                    chatBox.appendChild(aiMessage);
+                });
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function updateChatList() {
+            const chatList = document.getElementById('chat-list');
+            chatList.innerHTML = '';
+            Object.keys(chats).forEach(chatName => {
+                const chatItem = document.createElement('div');
+                chatItem.className = 'chat-item';
+                chatItem.onclick = () => {
+                    currentChat = chatName;
+                    localStorage.setItem('currentChat', currentChat);
+                    updateChatBox();
+                };
+
+                const chatLink = document.createElement('span');
+                const firstUserMessage = chats[chatName][0] ? chats[chatName][0].user.split(' ').slice(0, 5).join(' ') + '...' : chatName;
+                chatLink.textContent = firstUserMessage;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'delete-button';
+                deleteButton.textContent = '✖';
+                deleteButton.onclick = (event) => {
+                    event.stopPropagation(); // Prevent triggering the click event of chatItem
+                    delete chats[chatName];
+                    if (currentChat === chatName) {
+                        currentChat = '';
+                        localStorage.setItem('currentChat', currentChat);
+                        updateChatBox();
+                    }
+                    localStorage.setItem('chats', JSON.stringify(chats));
+                    updateChatList();
+                };
+
+                chatItem.appendChild(chatLink);
+                chatItem.appendChild(deleteButton);
+                chatList.appendChild(chatItem);
+            });
+        }
+        function startNewChat() {
+            if (currentChat) {
+                const chatBox = document.getElementById('chat-box');
+                chatBox.innerHTML = ''; // Clear the chat box
+                currentChat = ''; // Clear current chat
+                localStorage.setItem('currentChat', currentChat);
+                updateChatBox();
+                updateChatList();
+            }
+        }
+
+        document.getElementById('user-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        window.onload = () => {
+            updateChatBox();
+            updateChatList();
+        };
+
+    </script>
+</body>
+
+</html>

@@ -34,3 +34,6 @@ The script takes the directory path and optional list of filenames as arguments.
 ## Processed Data
 
 The process data will be saved in the directory processed-data.  The filename format for processed data is original_filename_YYYYMMDD_HHMMSS.json. This makes it easy to track when the data was processed.
+
+## To process run UI 
+`python app.py`
