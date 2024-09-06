@@ -37,3 +37,13 @@ The process data will be saved in the directory processed-data.  The filename fo
 
 ## To process run UI 
 `python app.py`
+
+* Running on http://127.0.0.1:5000
+
+For now we only have a connection to the data source within the code 
+
+## Saving a file directly in the app
+
+Adding a file goes directly "WordDocPrepBlob.py" to the blob storage(it is not stored in the code, after adding it is deleted ) from which the AI then takes data 
+
+Validation for adding the same file after a few seconds 

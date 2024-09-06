@@ -17,12 +17,49 @@
                 <input type="text" id="user-input" placeholder="Please enter your question...">
                 <button onclick="sendMessage()">Send</button>
                 <button onclick="startNewChat()">New Chat</button>
+                <button onclick="triggerFileInput()">Upload Word Document</button>
+                <input type="file" id="file-input" style="display: none;" accept=".docx" />
+            </div>
             </div>
         </div>
     </div>
     <script>
         let chats = JSON.parse(localStorage.getItem('chats')) || {};
         let currentChat = localStorage.getItem('currentChat') || '';
+
+        function triggerFileInput() {
+            document.getElementById('file-input').click();
+        }
+
+        document.getElementById('file-input').addEventListener('change', function () {
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('No file selected.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert('File upload successful');
+                } else if (data.error) {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while uploading the file.');
+            });
+        });
 
         function sendMessage() {
             const userInput = document.getElementById('user-input');
